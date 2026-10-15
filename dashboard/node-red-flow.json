@@ -1,0 +1,68 @@
+[
+    {
+        "id": "iot_tab",
+        "type": "tab",
+        "label": "IoT Gateway",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "mqtt_broker",
+        "type": "mqtt-broker",
+        "name": "local-mosquitto",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "node-red-dashboard",
+        "keepalive": "60",
+        "cleansession": true
+    },
+    {
+        "id": "mqtt_in",
+        "type": "mqtt in",
+        "z": "iot_tab",
+        "name": "telemetry",
+        "topic": "factory/line1/node1/telemetry",
+        "qos": "1",
+        "broker": "mqtt_broker",
+        "x": 150,
+        "y": 120,
+        "wires": [["json_parse"]]
+    },
+    {
+        "id": "json_parse",
+        "type": "json",
+        "z": "iot_tab",
+        "name": "parse",
+        "property": "payload",
+        "action": "obj",
+        "x": 320,
+        "y": 120,
+        "wires": [["temp_gauge", "hum_gauge"]]
+    },
+    {
+        "id": "temp_gauge",
+        "type": "ui_gauge",
+        "z": "iot_tab",
+        "name": "temperature",
+        "label": "Temp (C)",
+        "format": "{{msg.payload.temp}}",
+        "min": 0,
+        "max": 50,
+        "x": 520,
+        "y": 90,
+        "wires": []
+    },
+    {
+        "id": "hum_gauge",
+        "type": "ui_gauge",
+        "z": "iot_tab",
+        "name": "humidity",
+        "label": "Humidity (%)",
+        "format": "{{msg.payload.hum}}",
+        "min": 0,
+        "max": 100,
+        "x": 520,
+        "y": 150,
+        "wires": []
+    }
+]
