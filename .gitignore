@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Local database
+*.db
+
+# Certificates and secrets
+*.pem
+*.crt
+*.key
+passwd
+
+# ESP-IDF build output
+esp32_node/build/
+esp32_node/sdkconfig
+esp32_node/sdkconfig.old
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
